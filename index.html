@@ -16,8 +16,8 @@
         return decodeURIComponent(name[1]);
   }
   if(get("u") != undefined){
-    //window.location.href = get("url");
-    window.location.replace(get("u"));
+    window.location.href = get("url");
+    //window.location.replace(get("u"));
   }
 
   $("#btnSubmit").click(function(){
@@ -30,7 +30,7 @@
         alert("hehe");
         return;
       }
-      url = "http://sauravtom.com/gitiohack?u="+url;
+      url = "http://sauravtom.github.io/gitiohack?u="+url;
       $.get( "http://orch.in/x",{"url":url}, function( data ) {
         console.log(data.data.short_url);
       });
