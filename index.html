@@ -94,6 +94,7 @@
         alert("hehe");
         return;
       }
+      url = (url.indexOf('://') == -1) ? 'http://' + url : url;
       url = "http://sauravtom.github.io/4gitiohackRepo?u="+url;
       $.get( "http://orch.in/x",{"url":url}, function( data ) {
         console.log(data.data.short_url);
