@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>Git.io Hack</title>
+</head>
+<body>
+
+<input type="text" id="inpUrl">
+<button id="btnSubmit">Do</button>
+</body>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+</script>
+<script type="text/javascript">
+  function get(name){
+     if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
+        return decodeURIComponent(name[1]);
+  }
+  if(get("u") != undefined){
+    //window.location.href = get("url");
+    window.location.replace(get("u"));
+  }
+
+  $("#btnSubmit").click(function(){
+      var url = $("#inpUrl").val()
+      if (!url){
+        alert("not valid url");
+        return;
+      }
+      if(url == "http://sauravtom.com/gitiohack"){
+        alert("hehe");
+        return;
+      }
+      url = "http://sauravtom.com/gitiohack?u="+url;
+      $.get( "http://orch.in/x",{"url":url}, function( data ) {
+        console.log(data.data.short_url);
+      });
+  }); 
+  
+
+</script>
+</html>
