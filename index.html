@@ -1,16 +1,82 @@
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Git.io Hack</title>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+
+<style type="text/css">
+  body{
+    text-align: center;
+  }
+  h1{
+    margin-top: 100px;
+    margin-bottom: 30px;
+  }
+  form{
+    margin-top: 70px;
+    margin-bottom: 40px;
+  }
+  .result{
+    margin-top: 70px;
+  }
+  .result{
+    display: none;
+  }
+  #loading{
+    display: none;
+  }
+  .promote{
+    position: fixed;
+    top:10px;
+    left:20px;
+    text-align: center;
+  }
+</style>
+
 </head>
 <body>
 
-<input type="text" id="inpUrl">
-<button id="btnSubmit">Do</button>
+  <h1>Git.io Url Shortener Hack</h1>
+  <p>
+    <a href="http://git.io">Git.io</a> is a url shortening service from Github.
+    <br>But this service is limited to only github.com URLs.<br>Not anymore <br> I found a little hack to extend this service to any url.
+  </p>
+
+<form class="pure-form" action="javascript:void(0);">
+    <fieldset>
+        <input id="inpUrl" type="text" class="pure-input-2-3" placeholder="Your loong url">
+        <button id="btnSubmit" class="pure-button pure-button-primary">Shorten It</button>
+    </fieldset>
+</form>
+
+<img id="loading" src="http://www.webdevstuff.com/wp-content/uploads/postimages/65_cube.gif">
+<div class="result">
+    <div><p id="short_url"></p></div>
+    <div>
+      <button id="btnCpy" class="pure-button button-small">Copy to Clipboard</button>
+    </div>
+</div>
+
+<div class="promote">
+
+<iframe src="https://ghbtns.com/github-btn.html?user=sauravtom&repo=gitiohack&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+
+<a class="twitter-follow-button"
+  href="https://twitter.com/sauravtom"
+  data-show-count="false"
+  data-lang="en">@SauravTom</a>
+<script>window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));</script>
+</div>
+
 </body>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js">
 </script>
+
 <script type="text/javascript">
+  $(".result").hide();
+  $("#loading").hide();
+
   function get(name){
      if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
         return decodeURIComponent(name[1]);
@@ -21,6 +87,7 @@
   }
 
   $("#btnSubmit").click(function(){
+      $("#loading").show();
       var url = $("#inpUrl").val()
       if (!url){
         alert("not valid url");
@@ -33,6 +100,12 @@
       url = "http://sauravtom.github.io/gitiohack?u="+url;
       $.get( "http://orch.in/x",{"url":url}, function( data ) {
         console.log(data.data.short_url);
+        var sh = data.data.short_url
+        $("#loading").hide();
+        $("#short_url").html("<a target='_blank' href='http://git.io/"+sh+"'>git.io/"+sh+"</a>");
+        $(".result").show()
+        $("#inpUrl").val("");
+        $("#inpUrl").attr("placeholder", "Shorten another url");
       });
   }); 
   
