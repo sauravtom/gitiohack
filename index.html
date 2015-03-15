@@ -16,8 +16,8 @@
         return decodeURIComponent(name[1]);
   }
   if(get("u") != undefined){
-    window.location.href = get("url");
-    //window.location.replace(get("u"));
+    //window.location.href = get("url");
+    window.location.replace(get("u"));
   }
 
   $("#btnSubmit").click(function(){
