@@ -1,3 +1,5 @@
+<script type="text/javascript" src="//www.redditstatic.com/button/button1.js"></script>
+
 # Git.io Shortener Hack
 Shorten any url to git.io http://sauravtom.com/gitiohack
 
